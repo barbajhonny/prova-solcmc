@@ -1,0 +1,15 @@
+# Risultati e log
+results/
+*.log
+
+# Dipendenze (se le installerai)
+lib/
+node_modules/
+
+# File di sistema
+.DS_Store
+Thumbs.db
+
+# File di backup
+*.swp
+*~
