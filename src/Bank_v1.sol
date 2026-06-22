@@ -1,26 +1,22 @@
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.23;
+//SPDX-License-Identifier: UNLICENSED
+pragma solidity >= 0.8.2;
 
-contract Contratto {
-    uint public x;
-    uint public y;
+/// @custom:version minimal implementation according to informal specification
 
-    constructor() {
-        x = 5;
-        y = 10;
+contract Bank {
+    mapping (address user => uint credit) credits;
+
+    function deposit() public payable {
+        credits[msg.sender] += msg.value;
     }
 
-    function setX(uint _x) public {
-        x = _x;
-    }
+    function withdraw(uint amount) public {
+        require(amount > 0);
+        require(amount <= credits[msg.sender]);
 
-    function setY(uint _y) public {
-        assert(y>x);
-        y = _y;
-    }
+        credits[msg.sender] -= amount;
 
-    /// @custom:invariant
-    function inv_xy() public view {
-        assert(x + y == 15);
+        (bool success,) = msg.sender.call{value: amount}("");
+        require(success);
     }
 }
