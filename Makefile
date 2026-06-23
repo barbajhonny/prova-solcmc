@@ -1,5 +1,7 @@
 # Makefile per SolCMC
 
+export LD_LIBRARY_PATH := /usr/local/lib:$(LD_LIBRARY_PATH)
+
 SOLC = solc
 SOLC_FLAGS = --model-checker-engine all \
              --model-checker-invariants contract \
