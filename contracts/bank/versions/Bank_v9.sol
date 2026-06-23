@@ -3,7 +3,7 @@ pragma solidity >= 0.8.2;
 
 /// @custom:version `deposit` and `withdraw` are non-reentrant
 
-import "lib/ReentrancyGuard.sol";
+import "../../../lib/ReentrancyGuard.sol";
 
 contract Bank is ReentrancyGuard {
     mapping (address user => uint credit) credits;
